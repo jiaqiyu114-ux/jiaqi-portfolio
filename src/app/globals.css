@@ -1,26 +1,176 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #DEDBC8;
+  --color-cream: #E1E0CC;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Almarai', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: 'Instrument Serif', serif;
+  --font-display: 'Cinzel', 'Trajan Pro', Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* ─── Global background system ───────────────────────────────────────────── */
+/* Base dark only — GlobalAtmosphere component handles all ambient gradients. */
+body {
+  background-color: #040608;
+  color: #f2efe8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── Section panel ──────────────────────────────────────────────────────── */
+/* Cool blue-grey tint + hairline — connects sections without warm bleed.    */
+.section-panel {
+  background: rgba(185, 190, 200, 0.015);
+  border-top: 1px solid rgba(185, 190, 200, 0.065);
+}
+
+/* ─── Liquid Glass System ─────────────────────────────────────────────────── */
+/* Used for Navbar, Hero stat cards, and Building capability cards.           */
+
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 4px 24px rgba(0, 0, 0, 0.22);
+}
+
+.liquid-glass-strong {
+  background: rgba(255, 255, 255, 0.055);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.11),
+    0 8px 32px rgba(0, 0, 0, 0.28);
+}
+
+.glass-chip {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 9999px;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(220, 218, 210, 0.60);
+  white-space: nowrap;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.25);
+  border-radius: 1.25rem;
+  transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.065);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.11),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08),
+    0 20px 48px rgba(0, 0, 0, 0.32);
+}
+
+/* ─── Noise utilities ─────────────────────────────────────────────────────── */
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n1)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  background-repeat: repeat;
+}
+
+.noise-bg {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  background-repeat: repeat;
+}
+
+/* ── VisualWorks kinetic gallery ──────────────────────────────────────────── */
+/* 3 copies per row → -33.333% = exactly one copy → seamless loop            */
+/* 2 copies per row → -50% (when COPIES=2 for large sets)                    */
+@keyframes gallery-drift-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
+}
+@keyframes gallery-drift-right {
+  from { transform: translateX(-33.333%); }
+  to   { transform: translateX(0); }
+}
+
+/* Hover pauses the strip — CSS-only, no JS needed for hover state */
+.gallery-row:hover .gallery-strip {
+  animation-play-state: paused;
+}
+
+/* ── Gallery utilities ────────────────────────────────────────────────────── */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Work card hover */
+.work-card {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.work-card:hover {
+  border-color: rgba(255,255,255,0.26) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.48) !important;
+}
+
+/* Prevent image drag on gallery cards */
+.visual-work-card,
+.visual-work-card img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Gallery row drag cursor */
+.visual-gallery-row {
+  touch-action: pan-y;
+}
+@media (pointer: fine) {
+  .visual-gallery-row {
+    cursor: grab;
+  }
+  .visual-gallery-row.is-dragging {
+    cursor: grabbing;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* OperatingIndex — responsive block divider */
+/* Mobile: horizontal rule; sm+: vertical rule */
+.index-block-divider {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+@media (min-width: 640px) {
+  .index-block-divider {
+    border-bottom: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+  }
 }
