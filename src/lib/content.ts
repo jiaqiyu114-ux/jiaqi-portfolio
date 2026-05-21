@@ -69,10 +69,10 @@ export const siteContent = {
   },
 
   visualWorks: {
-    label: "03 / Visual Archive",
+    label: "04 / Visual Archive",
     headline: ["VISUAL", "ARCHIVE."],
     subtitle:
-      "A growing collection of image, cover, portrait, and composition studies.",
+      "A growing collection of website screenshots, visual direction studies, covers, portraits, and composition experiments.",
     footerNote:
       "These works are not decoration. They are studies in typography, atmosphere, identity, and taste.",
     items: [
@@ -150,7 +150,7 @@ export const siteContent = {
   },
 
   operatingIndex: {
-    label: "04 / Index",
+    label: "03 / Index",
     headline: ["OPERATING", "INDEX."],
     proof: {
       heading: "What exists.",

@@ -116,43 +116,43 @@ export const generatedWorks: GeneratedWork[] = [
   {
     "src": "/works/floral-portrait-study.webp",
     "title": "Floral Portrait Study",
-    "category": "Visual Direction Study",
+    "category": "Website Screenshot",
     "ar": "portrait"
   },
   {
     "src": "/works/modern-portrait-study.webp",
     "title": "Modern Portrait Study",
-    "category": "Visual Direction Study",
+    "category": "Website Screenshot",
     "ar": "portrait"
   },
   {
     "src": "/works/radiant-awakening.webp",
     "title": "Radiant Awakening",
-    "category": "Visual Direction Study",
+    "category": "Website Screenshot",
     "ar": "portrait"
   },
   {
     "src": "/works/red-car-editorial.webp",
     "title": "Red Car Editorial",
-    "category": "Visual Direction Study",
+    "category": "Website Screenshot",
     "ar": "wide"
   },
   {
     "src": "/works/the-new-rules.webp",
     "title": "The New Rules",
-    "category": "Visual Direction Study",
+    "category": "Website Screenshot",
     "ar": "portrait"
   },
   {
     "src": "/works/time-culture-maker.webp",
     "title": "Time Culture Maker",
-    "category": "Visual Direction Study",
+    "category": "Website Screenshot",
     "ar": "portrait"
   },
   {
     "src": "/works/volt-no-more-filters.webp",
     "title": "Volt No More Filters",
-    "category": "Visual Direction Study",
+    "category": "Website Screenshot",
     "ar": "portrait"
   }
 ];

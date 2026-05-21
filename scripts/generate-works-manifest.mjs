@@ -24,10 +24,20 @@ function toTitle(filename) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+/** Infer category from filename keywords */
+function toCategory(filename) {
+  const lc = filename.toLowerCase();
+  if (/screenshot|screen|website|web|site|page|ui|interface|app/.test(lc)) return "Website Screenshot";
+  if (/portrait|face|person|model|editorial|beauty/.test(lc)) return "Portrait Study";
+  if (/cover|magazine|editorial/.test(lc)) return "Editorial Cover";
+  if (/logo|brand|identity/.test(lc)) return "Brand Identity";
+  return "Visual Direction Study";
+}
+
 /** Coarse aspect-ratio classification from filename */
 function toAr(filename) {
   const lc = filename.toLowerCase();
-  if (/wide|landscape|banner|car|hero|horizontal/.test(lc)) return "wide";
+  if (/wide|landscape|banner|car|hero|horizontal|screen|screenshot|website/.test(lc)) return "wide";
   if (/square/.test(lc)) return "square";
   return "portrait"; // default
 }
@@ -48,7 +58,7 @@ async function main() {
   const items = images.map((f) => ({
     src:      `/works/${f}`,
     title:    toTitle(f),
-    category: "Visual Direction Study",
+    category: toCategory(f),
     ar:       toAr(f),
   }));
 
